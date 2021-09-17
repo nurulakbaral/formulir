@@ -1,12 +1,20 @@
 {
     "name": "formulir",
-    "version": "1.0.0-beta",
+    "version": "1.0.0-beta.1",
+    "author": "nurulakbaral@gmail.com",
     "license": "MIT",
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
     "files": [
         "dist"
+    ],
+    "keywords": [
+        "react",
+        "form",
+        "material-ui",
+        "formik",
+        "mui-v5"
     ],
     "scripts": {
         "build": "rimraf build dist && npx rollup -c"
