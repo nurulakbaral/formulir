@@ -1,6 +1,6 @@
 {
     "name": "formulir",
-    "version": "1.0.0-beta.1",
+    "version": "1.0.0-beta.2",
     "author": "nurulakbaral@gmail.com",
     "license": "MIT",
     "main": "dist/index.js",
