@@ -1,6 +1,6 @@
 {
     "name": "formulir",
-    "version": "1.0.0-beta.2",
+    "version": "1.0.0-beta.3",
     "author": "nurulakbaral@gmail.com",
     "license": "MIT",
     "main": "dist/index.js",
@@ -16,6 +16,13 @@
         "formik",
         "mui-v5"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nurulakbaral/formulir.git"
+    },
+    "bugs": {
+        "url": "https://github.com/nurulakbaral/formulir/issues"
+    },
     "scripts": {
         "build": "rimraf build dist && npx rollup -c"
     },
