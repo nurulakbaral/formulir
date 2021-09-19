@@ -87,10 +87,42 @@ export const FForm = ({ children, ...fformProps }) => {
 }
 
 FForm.propTypes = {
-    initialValues: PropTypes.object.isRequired,
-    validationSchema: PropTypes.oneOfType([PropTypes.bool.isRequired, PropTypes.object.isRequired]),
-    onSubmit: PropTypes.func.isRequired,
+    /**
+     * Children prop
+     *
+     * @param {React.ReactNode}
+     */
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
+    /**
+     * Style prop
+     *
+     * @param {React.CSSProperties}
+     */
     style: PropTypes.object,
+    /**
+     * ClassName Prop
+     *
+     * @param {String}
+     */
     className: PropTypes.string,
+    /**
+     * <Formik/>: initialValues prop
+     *
+     * @param {Object}
+     */
+    initialValues: PropTypes.object.isRequired,
+    /**
+     * <Formik/>: validationSchema prop
+     * Do       : { [key]: 'string' | 'number' | 'array' | Yup.string().required() }
+     * Don't    : Yup.object({ [key]: 'string' | 'number' | 'array' | Yup.string().required() })
+     *
+     * @param {Object}
+     */
+    validationSchema: PropTypes.oneOfType([PropTypes.bool.isRequired, PropTypes.object.isRequired]),
+    /**
+     * <Formik/>: onSubmit prop
+     *
+     * @param {Function}
+     */
+    onSubmit: PropTypes.func.isRequired,
 }

@@ -21,7 +21,29 @@ export const FButton = ({ children, ...fbuttonProps }) => {
 }
 
 FButton.propTypes = {
+    /**
+     * Children prop
+     *
+     * @param {React.ReactNode}
+     */
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
+    /**
+     * Style prop
+     *
+     * @param {React.CSSProperties}
+     */
     style: PropTypes.object,
+    /**
+     * ClassName Prop
+     *
+     * @param {String}
+     */
     className: PropTypes.string,
+    /**
+     * For FButton, muiInputProps consists of ButtonProps
+     * ButtonProps API: https://mui.com/api/button/
+     *
+     * @param {Object}
+     */
+    muiInputProps: PropTypes.object,
 }

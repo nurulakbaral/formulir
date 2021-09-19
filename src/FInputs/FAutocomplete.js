@@ -128,11 +128,48 @@ export const FAutocomplete = ({ ...fautocompleteProps }) => {
 }
 
 FAutocomplete.propTypes = {
-    name: PropTypes.string.isRequired,
-    options: PropTypes.array.isRequired,
-    errorMessage: PropTypes.string,
-    label: PropTypes.string,
-    muiInputProps: PropTypes.object,
+    /**
+     * Style prop
+     *
+     * @param {React.CSSProperties}
+     */
     style: PropTypes.object,
+    /**
+     * ClassName Prop
+     *
+     * @param {String}
+     */
     className: PropTypes.string,
+    /**
+     * Name is basic attribute of input element (<Autocomplete/> and <TextField/>)
+     *
+     * @param {String}
+     */
+    name: PropTypes.string.isRequired,
+    /**
+     * Options is prop of Material UI Autocomplete
+     *
+     * @param {Array}
+     */
+    options: PropTypes.array.isRequired,
+    /**
+     * ErrorMessage in helperText prop of Material UI TextField
+     *
+     * @param {String}
+     */
+    errorMessage: PropTypes.string,
+    /**
+     * Label prop is basic attribute of input element (<TextField/>)
+     *
+     * @param {String}
+     */
+    label: PropTypes.string,
+    /**
+     * For FAutocomplete, muiInputProps consists of AutocompleteProps and TextFieldProps
+     * AutocompleteProps API    : https://mui.com/api/autocomplete/
+     * TextFieldProps API       : https://mui.com/api/text-field/
+     *
+     * @param {Object}
+     */
+    muiInputProps: PropTypes.object,
 }

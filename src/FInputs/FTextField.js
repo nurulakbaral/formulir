@@ -86,11 +86,48 @@ export const FTextField = ({ ...ftextfieldProps }) => {
 }
 
 FTextField.propTypes = {
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    errorMessage: PropTypes.string,
-    label: PropTypes.string,
-    muiInputProps: PropTypes.object,
+    /**
+     * Style prop
+     *
+     * @param {React.CSSProperties}
+     */
     style: PropTypes.object,
+    /**
+     * ClassName Prop
+     *
+     * @param {String}
+     */
     className: PropTypes.string,
+    /**
+     * Name is basic attribute of input element <TextField/>
+     *
+     * @param {String}
+     */
+    name: PropTypes.string.isRequired,
+    /**
+     * Type is basic attribute of input element <TextField/>
+     * Values:  'text'  | 'number' | 'email' | 'number' | 'password'
+     *
+     * @param {String}
+     */
+    type: PropTypes.string.isRequired,
+    /**
+     * ErrorMessage in helperText prop of Material UI TextField
+     *
+     * @param {String}
+     */
+    errorMessage: PropTypes.string,
+    /**
+     * Label is basic attribute of input element <TextField/>
+     *
+     * @param {String}
+     */
+    label: PropTypes.string,
+    /**
+     * For FTextField, muiInputProps consists of TextFieldProps
+     * TextFieldProps API       : https://mui.com/api/text-field/
+     *
+     * @param {Object}
+     */
+    muiInputProps: PropTypes.object,
 }

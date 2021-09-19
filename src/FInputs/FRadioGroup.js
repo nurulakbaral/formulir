@@ -86,11 +86,47 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
 }
 
 FRadioGroup.propTypes = {
-    name: PropTypes.string.isRequired,
-    options: PropTypes.array.isRequired,
-    errorMessage: PropTypes.string,
-    label: PropTypes.string,
-    muiInputProps: PropTypes.object,
+    /**
+     * Style prop
+     *
+     * @param {React.CSSProperties}
+     */
     style: PropTypes.object,
+    /**
+     * ClassName Prop
+     *
+     * @param {String}
+     */
     className: PropTypes.string,
+    /**
+     * Basic attribute of input element (<RadioGroup/>)
+     *
+     * @param {String}
+     */
+    name: PropTypes.string.isRequired,
+    /**
+     * Options consist of FormControlLabel components
+     *
+     * @param {Array}
+     */
+    options: PropTypes.array.isRequired,
+    /**
+     * ErrorMessage in FormHelperText component
+     *
+     * @param {String}
+     */
+    errorMessage: PropTypes.string,
+    /**
+     * Label is element text of FormLabel
+     *
+     * @param {String}
+     */
+    label: PropTypes.string,
+    /**
+     * For FRadioGroup, muiInputProps consists of FormControlLabelProps
+     * FormControlLabelProps API: https://mui.com/api/form-control-label/
+     *
+     * @param {Object}
+     */
+    muiInputProps: PropTypes.object,
 }

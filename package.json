@@ -1,6 +1,6 @@
 {
     "name": "formulir",
-    "version": "1.0.0-beta.3",
+    "version": "1.0.0-beta.4",
     "author": "nurulakbaral@gmail.com",
     "license": "MIT",
     "main": "dist/index.js",
@@ -24,7 +24,8 @@
         "url": "https://github.com/nurulakbaral/formulir/issues"
     },
     "scripts": {
-        "build": "rimraf build dist && npx rollup -c"
+        "build": "rimraf build dist && npx rollup -c",
+        "remove:src": "rimraf src"
     },
     "dependencies": {
         "@babel/runtime": "^7.15.4",

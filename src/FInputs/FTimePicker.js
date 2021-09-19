@@ -86,9 +86,36 @@ export const FTimePicker = ({ ...datepickerProps }) => {
 }
 
 FTimePicker.propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    muiInputProps: PropTypes.object,
+    /**
+     * Style prop
+     *
+     * @param {React.CSSProperties}
+     */
     style: PropTypes.object,
+    /**
+     * ClassName Prop
+     *
+     * @param {String}
+     */
     className: PropTypes.string,
+    /**
+     * Basic attribute of input element (<TimePicker/>)
+     *
+     * @param {String}
+     */
+    name: PropTypes.string.isRequired,
+    /**
+     * Label prop is basic attribute of input element (<TimPicker/>)
+     *
+     * @param {String}
+     */
+    label: PropTypes.string,
+    /**
+     * For FTimPicker, muiInputProps consists of TimePickerProps and TextFieldProps
+     * TimePickerProps API      : https://mui.com/api/time-picker/
+     * TextFieldProps API       : https://mui.com/api/text-field/
+     *
+     * @param {Object}
+     */
+    muiInputProps: PropTypes.object,
 }

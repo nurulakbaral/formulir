@@ -83,9 +83,36 @@ export const FDatePicker = ({ ...datepickerProps }) => {
 }
 
 FDatePicker.propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    muiInputProps: PropTypes.object,
+    /**
+     * Style prop
+     *
+     * @param {React.CSSProperties}
+     */
     style: PropTypes.object,
+    /**
+     * ClassName Prop
+     *
+     * @param {String}
+     */
     className: PropTypes.string,
+    /**
+     * Basic attribute of input element (<DatePicker/>)
+     *
+     * @param {String}
+     */
+    name: PropTypes.string.isRequired,
+    /**
+     * Label prop is basic attribute of input element (<DatePicker/>)
+     *
+     * @param {String}
+     */
+    label: PropTypes.string,
+    /**
+     * For FDatePicker, muiInputProps consists of DatePickerProps and TextFieldProps
+     * DatePickerProps API      : https://mui.com/components/date-picker/
+     * TextFieldProps API       : https://mui.com/api/text-field/
+     *
+     * @param {Object}
+     */
+    muiInputProps: PropTypes.object,
 }
