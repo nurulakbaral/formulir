@@ -29,6 +29,103 @@ _If you use ex. Next.js make sure server rendering is in Material UI (MUI), to m
 
 -   [Example Projects (Official)](https://mui.com/getting-started/example-projects/)
 
+## Basic Usage
+
+```jsx
+import {
+    FForm,
+    FButton,
+    FTextField,
+    FAutocomplete,
+    FCheckbox,
+    FDatePicker,
+    FRadioGroup,
+    FTimePicker,
+} from 'formulir'
+
+const initialValues = {
+    // FTextField {String}
+    username: '',
+    // FAutocomplete {String | Array}
+    gender: '', // Single value
+    favoriteSongs: [], // Multiple values
+    // FCheckbox {Array}
+    hobbies: [],
+    // FDatePicker {Date}
+    birthDate: '',
+    // FRadioGroup {Array}
+    yearOfCollege: [],
+    // FTimePicker {Date}
+    eventTime: '',
+}
+const validationSchema = {
+    // [initialValues key]: 'string' | 'number' | 'array' | Yup Validation
+}
+const handleSubmit = (values, { setSubmitting }) => {
+    console.log(values)
+    setSubmitting(false)
+}
+
+;<FForm
+    initialValues={initialValues}
+    onSubmit={handleSubmit}
+    validationSchema={validationSchema}
+>
+    <FTextField
+        name='username'
+        type='text'
+        errorMessage='Cusutom error message'
+    />
+    <FAutocomplete
+        name='gender'
+        options={[{ label: 'Male' }, { label: 'Female' }]}
+        muiInputProps={{
+            TextFieldProps: {
+                variant: 'outlined',
+            },
+        }}
+    />
+    <FAutocomplete
+        name='favoriteSongs'
+        options={[
+            { label: 'Eminem' },
+            { label: 'Rex Orange Country' },
+            { label: 'A7X' },
+        ]}
+        muiInputProps={{
+            AutocompleteProps: {
+                multiple: true,
+            },
+            TextFieldProps: {
+                placeholder: 'My Placeholder',
+            },
+        }}
+    />
+    <FCheckbox
+        name='hobbies'
+        options={[{ label: 'Football' }, { label: 'Vollybal' }]}
+    />
+    <FDatePicker name='birthDate' />
+    <FRadioGroup
+        name='yearOfCollege'
+        options={[
+            { label: '55', value: 'Saga Agrisatya' },
+            { label: '54' },
+            { label: '53' },
+        ]}
+    />
+    <FTimePicker
+        name='eventTime'
+        muiInputProps={{
+            TimePickerProps: {
+                ampm: false,
+            },
+        }}
+    />
+    <FButton />
+</FForm>
+```
+
 ## Setup
 
 **DatePicker and TimePicker**
@@ -46,6 +143,81 @@ function App() {
     )
 }
 ```
+
+## API Reference
+
+### FForm
+
+| Name             | Type     | Note     |
+| ---------------- | -------- | -------- |
+| initialValues    | object   | required |
+| validationSchema | object   | required |
+| onSubmit         | function | required |
+
+### FButton
+
+| Name          | Type                   | Note     |
+| ------------- | ---------------------- | -------- |
+| muiInputProps | { ButtonProps: {...} } | optional |
+
+### FTextField
+
+| Name          | Type                      | Note     |
+| ------------- | ------------------------- | -------- |
+| muiInputProps | { TextFieldProps: {...} } | optional |
+| name          | string                    | required |
+| label         | string                    | optional |
+| errorMessage  | string                    | optional |
+| type          | string                    | required |
+
+### FAutocomplete
+
+| Name          | Type                                                | Note     |
+| ------------- | --------------------------------------------------- | -------- |
+| muiInputProps | { TextFieldProps: {...}, AutocompleteProps: {...} } | optional |
+| name          | string                                              | required |
+| label         | string                                              | optional |
+| errorMessage  | string                                              | optional |
+| options       | array                                               | required |
+
+### FDatePicker
+
+| Name          | Type                                              | Note     |
+| ------------- | ------------------------------------------------- | -------- |
+| muiInputProps | { TextFieldProps: {...}, DatePickerProps: {...} } | optional |
+| name          | string                                            | required |
+| label         | string                                            | optional |
+
+### FTimePicker
+
+| Name          | Type                                              | Note     |
+| ------------- | ------------------------------------------------- | -------- |
+| muiInputProps | { TextFieldProps: {...}, TimePickerProps: {...} } | optional |
+| name          | string                                            | required |
+| label         | string                                            | optional |
+
+### FCheckbox
+
+| Name          | Type                            | Note     |
+| ------------- | ------------------------------- | -------- |
+| muiInputProps | { FormControlLabelProps : {...} | optional |
+| name          | string                          | required |
+| label         | string                          | optional |
+| errorMessage  | string                          | optional |
+| options       | array                           | required |
+
+### FRadioGroup
+
+| Name          | Type                            | Note     |
+| ------------- | ------------------------------- | -------- |
+| muiInputProps | { FormControlLabelProps : {...} | optional |
+| name          | string                          | required |
+| label         | string                          | optional |
+| errorMessage  | string                          | optional |
+| options       | array                           | required |
+
+**Note** :
+TextFieldProps (https://mui.com/api/text-field/#props), ButtonProps (https://mui.com/api/button/), FormControlLabelProps (https://mui.com/api/form-control-label/), etc.
 
 ## Examples
 
