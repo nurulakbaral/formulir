@@ -43,87 +43,104 @@ import {
     FTimePicker,
 } from 'formulir'
 
-const initialValues = {
-    // FTextField {String}
-    username: '',
-    // FAutocomplete {String | Array}
-    gender: '', // Single value
-    favoriteSongs: [], // Multiple values
-    // FCheckbox {Array}
-    hobbies: [],
-    // FDatePicker {Date}
-    birthDate: '',
-    // FRadioGroup {Array}
-    yearOfCollege: [],
-    // FTimePicker {Date}
-    eventTime: '',
-}
-const validationSchema = {
-    // [initialValues key]: 'string' | 'number' | 'array' | Yup Validation
-}
-const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values)
-    setSubmitting(false)
-}
+const FormFormulir = () => {
+    const initialValues = {
+        // FTextField, return {String}
+        username: '',
+        // FAutocomplete, return {String | Array}
+        gender: '', // Single value
+        favoriteSongs: [], // Multiple values
+        // FCheckbox, return {Array}
+        hobbies: [],
+        // FDatePicker, return {Date}
+        birthDate: '',
+        // FRadioGroup, return {Array}
+        yearOfCollege: [],
+        // FTimePicker, return {Date}
+        eventTime: '',
+    }
+    const validationSchema = {
+        // [initialValues key]: 'string' | 'number' | 'array' | Yup Validation
+        // Examples:
+        username: 'string',
+        favoriteSongs: Yup.array().min(1),
+        // Notes: There is no validation for DatePicker and TimePicker, because it is confirmed that it is already filled
+        // birthDate: 'date',   <-- Wrong!
+        // eventTime: 'date'    <-- Wrong!
+    }
+    const handleSubmit = (values, { setSubmitting }) => {
+        console.log(values)
+        setSubmitting(false)
+    }
 
-;<FForm
-    initialValues={initialValues}
-    onSubmit={handleSubmit}
-    validationSchema={validationSchema}
->
-    <FTextField
-        name='username'
-        type='text'
-        errorMessage='Cusutom error message'
-    />
-    <FAutocomplete
-        name='gender'
-        options={[{ label: 'Male' }, { label: 'Female' }]}
-        muiInputProps={{
-            TextFieldProps: {
-                variant: 'outlined',
-            },
-        }}
-    />
-    <FAutocomplete
-        name='favoriteSongs'
-        options={[
-            { label: 'Eminem' },
-            { label: 'Rex Orange Country' },
-            { label: 'A7X' },
-        ]}
-        muiInputProps={{
-            AutocompleteProps: {
-                multiple: true,
-            },
-            TextFieldProps: {
-                placeholder: 'My Placeholder',
-            },
-        }}
-    />
-    <FCheckbox
-        name='hobbies'
-        options={[{ label: 'Football' }, { label: 'Vollybal' }]}
-    />
-    <FDatePicker name='birthDate' />
-    <FRadioGroup
-        name='yearOfCollege'
-        options={[
-            { label: '55', value: 'Saga Agrisatya' },
-            { label: '54' },
-            { label: '53' },
-        ]}
-    />
-    <FTimePicker
-        name='eventTime'
-        muiInputProps={{
-            TimePickerProps: {
-                ampm: false,
-            },
-        }}
-    />
-    <FButton />
-</FForm>
+    return (
+        <FForm
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validationSchema={validationSchema}
+        >
+            <FTextField
+                name='username'
+                type='text'
+                errorMessage='Cusutom error message'
+            />
+            <FAutocomplete
+                name='gender'
+                // Notes: If the value is not defined it will return the value of the label
+                options={[
+                    { label: 'Laki-laki', value: 'male' },
+                    { label: 'Perempuan', value: 'female' },
+                ]}
+                muiInputProps={{
+                    TextFieldProps: {
+                        variant: 'outlined',
+                    },
+                }}
+            />
+            <FAutocomplete
+                name='favoriteSongs'
+                // Notes: If the value is not defined it will return the value of the label
+                options={[
+                    { label: 'Eminem', value: 'optionID-XwP0-900' },
+                    { label: 'A7X', value: 'optionID-XwP0-9222' },
+                    { labelAndValue: 'Rex Orange Country' },
+                ]}
+                muiInputProps={{
+                    AutocompleteProps: {
+                        multiple: true,
+                    },
+                    TextFieldProps: {
+                        placeholder: 'My Placeholder',
+                    },
+                }}
+            />
+            <FCheckbox
+                name='hobbies'
+                // Notes: If the value is not defined it will return the value of the label
+                options={[{ label: 'Football' }, { label: 'Vollybal' }]}
+            />
+            <FDatePicker name='birthDate' />
+            <FRadioGroup
+                name='yearOfCollege'
+                // Notes: If the value is not defined it will return the value of the label
+                options={[
+                    { label: '55', value: 'Saga Agrisatya' },
+                    { label: '54' },
+                    { label: '53' },
+                ]}
+            />
+            <FTimePicker
+                name='eventTime'
+                muiInputProps={{
+                    TimePickerProps: {
+                        ampm: false,
+                    },
+                }}
+            />
+            <FButton />
+        </FForm>
+    )
+}
 ```
 
 ## Setup
