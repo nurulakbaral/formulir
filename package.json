@@ -1,6 +1,6 @@
 {
     "name": "formulir",
-    "version": "1.0.0-beta.4",
+    "version": "1.0.0-beta.5",
     "author": "nurulakbaral@gmail.com",
     "license": "MIT",
     "main": "dist/index.js",
@@ -37,8 +37,8 @@
         "@date-io/date-fns": "^2.11.0",
         "@emotion/react": "^11.4.1",
         "@emotion/styled": "^11.3.0",
-        "@mui/lab": "^5.0.0-alpha.47",
-        "@mui/material": "^5.0.0",
+        "@mui/lab": "^5.0.0-alpha.48",
+        "@mui/material": "^5.0.1",
         "date-fns": "^2.24.0",
         "react": "^17.0.2",
         "react-dom": "^17.0.2"

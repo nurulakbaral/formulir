@@ -91,7 +91,7 @@ export const FAutocomplete = ({ ...fautocompleteProps }) => {
     const newOptionsProp = React.useMemo(() => {
         // Notes: Change values[_name] to array
         const selectedOptions = !Array.isArray(values[_Name]) ? Array.of(values[_Name]) : values[_Name]
-        const renderedOptions = createOptionsProp('fautocomplete', _Options)
+        const renderedOptions = createOptionsProp(_Options)
         if (selectedOptions.length === 0) return renderedOptions
         const filteredOptions = (option) => {
             const result = selectedOptions.find((selectedOption) => selectedOption?.label === option.label)
