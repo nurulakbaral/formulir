@@ -21,7 +21,7 @@ yarn add @mui/lab date-fns @date-io/date-fns
 **Formulir**
 
 ```sh
-yarn add formulir
+yarn add @formulir/material-ui
 ```
 
 **Note** :
@@ -41,7 +41,7 @@ import {
     FDatePicker,
     FRadioGroup,
     FTimePicker,
-} from 'formulir'
+} from '@formulir/material-ui'
 
 const FormFormulir = () => {
     const initialValues = {
@@ -86,7 +86,7 @@ const FormFormulir = () => {
             />
             <FAutocomplete
                 name='gender'
-                // Notes: If the value is not defined it will return the value of the label
+                // Notes: If the `value` is not defined it will return `undefined`
                 options={[
                     { label: 'Laki-laki', value: 'male' },
                     { label: 'Perempuan', value: 'female' },
@@ -99,7 +99,7 @@ const FormFormulir = () => {
             />
             <FAutocomplete
                 name='favoriteSongs'
-                // Notes: If the value is not defined it will return the value of the label
+                // Notes: If the `value` is not defined it will return `undefined`
                 options={[
                     { label: 'Eminem', value: 'optionID-XwP0-900' },
                     { label: 'A7X', value: 'optionID-XwP0-9222' },
@@ -116,8 +116,8 @@ const FormFormulir = () => {
             />
             <FCheckbox
                 name='hobbies'
-                // Notes: If the value is not defined it will return the value of the label
-                options={[{ label: 'Football' }, { label: 'Vollybal' }]}
+                // Notes: If the `value` is not defined it will return the value of the `label`
+                options={[{ label: 'Football': value: "OptionID-x01" }, { labelAndValue: 'Volleybal' }]}
             />
             <FDatePicker name='birthDate' />
             <FRadioGroup
@@ -165,11 +165,11 @@ function App() {
 
 ### FForm
 
-| Name             | Type     | Note     |
-| ---------------- | -------- | -------- |
-| initialValues    | object   | required |
-| validationSchema | object   | required |
-| onSubmit         | function | required |
+| Name             | Type            | Note     |
+| ---------------- | --------------- | -------- |
+| initialValues    | object          | required |
+| validationSchema | object \| false | required |
+| onSubmit         | function        | required |
 
 ### FButton
 
@@ -239,4 +239,3 @@ TextFieldProps (https://mui.com/api/text-field/#props), ButtonProps (https://mui
 ## Examples
 
 -   [CodeSandbox](https://codesandbox.io/s/formulir-build-instant-material-ui-forms-m9n86?file=/src/App.js)
--   Documentation _(coming soon)_
