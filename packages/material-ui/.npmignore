@@ -1,0 +1,13 @@
+# Local Files
+__test__
+src
+stories
+
+# Logs
+*.log
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# Dependency directory
+node_modules
