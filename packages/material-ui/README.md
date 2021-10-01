@@ -6,13 +6,13 @@ Formulir is a simple library for building instant forms with Material UI (MUI) c
 
 You’ll want to install Formulir and its peer-dependencies via yarn (or npm).
 
-**MUI Core**
+**MUI Core (Required)**
 
 ```sh
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
-**MUI Lab**
+**MUI Lab (Required)**
 
 ```sh
 yarn add @mui/lab date-fns @date-io/date-fns
@@ -143,7 +143,7 @@ const FormFormulir = () => {
 }
 ```
 
-## Setup (Important)
+## Setup (Required)
 
 **DatePicker and TimePicker**
 
