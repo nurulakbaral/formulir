@@ -25,7 +25,7 @@ const config = {
             includeDependencies: true,
         }),
         babel({
-            exclude: /node_modules/,
+            exclude: 'node_modules/**',
             babelHelpers: 'runtime',
         }),
         resolve(),

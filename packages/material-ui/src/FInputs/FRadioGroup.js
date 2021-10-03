@@ -13,9 +13,15 @@ import { useFieldError } from '../useFieldError'
 import invariant from 'tiny-warning'
 import PropTypes from 'prop-types'
 import { createOptionsProp } from '../createOptionsProp'
+import { inspectMuiInputProps } from './FAutocomplete'
 
 // Credit: This was taken from formik-material-ui. Big thanks for the inspiration!
-const fieldToFRadioGroup = ({ field: { onBlur: fieldOnBlur, ...field }, form, onBlur, ...props }) => {
+const fieldToFRadioGroup = ({
+    field: { onBlur: fieldOnBlur, ...field },
+    form,
+    onBlur,
+    ...props
+}) => {
     return {
         onBlur:
             onBlur ??
@@ -27,7 +33,9 @@ const fieldToFRadioGroup = ({ field: { onBlur: fieldOnBlur, ...field }, form, on
     }
 }
 const RadioGroup = ({ children, ...props }) => {
-    return <MuiRadioGroup {...fieldToFRadioGroup(props)}>{children}</MuiRadioGroup>
+    return (
+        <MuiRadioGroup {...fieldToFRadioGroup(props)}>{children}</MuiRadioGroup>
+    )
 }
 export const FRadioGroup = ({ ...fradiogroupProps }) => {
     const { formikProps } = useFFormProps()
@@ -57,7 +65,25 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
         },
     } = { FormControlLabelProps: muiInputProps?.FormControlLabelProps ?? {} }
     if (process.env.NODE_ENV !== 'production') {
-        invariant(!!_Options, `Prop of \`options\` has not been defined, this can caused unexpected behaviour`)
+        const constraintProp = ['FormControlLabelProps']
+        const { isPropValid, brokenKeys } = inspectMuiInputProps({
+            inputProp: muiInputProps ?? {},
+            constraintProp,
+        })
+        // Notes: Warning for `muiInputProps` prop
+        invariant(
+            isPropValid,
+            `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
+                ', '
+            )}. Prop of \`muiInputProps\` from a FRadioGroup component accepts only properties ${constraintProp.join(
+                ', '
+            )}.`
+        )
+        // Notes: Warning for `options` prop
+        invariant(
+            !!_Options,
+            `Prop of \`options\` has not been defined, this can caused unexpected behaviour`
+        )
     }
     if (!_Name) {
         throw new Error(`Prop of \`name\` has not been defined.`)
@@ -128,5 +154,7 @@ FRadioGroup.propTypes = {
      *
      * @param {Object}
      */
-    muiInputProps: PropTypes.object,
+    muiInputProps: PropTypes.shape({
+        FormControlLabelProps: PropTypes.object,
+    }),
 }

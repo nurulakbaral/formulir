@@ -1,6 +1,6 @@
 {
     "name": "@formulir/material-ui",
-    "version": "1.0.0-beta.6",
+    "version": "1.0.0-beta.7",
     "author": "nurulakbaral@gmail.com",
     "license": "MIT",
     "main": "dist/index.js",
@@ -25,8 +25,9 @@
         "url": "https://github.com/nurulakbaral/formulir/issues"
     },
     "scripts": {
-        "build": "yarn run rimraf && yarn run rollup",
-        "rimraf": "../../node_modules/.bin/rimraf build dist",
+        "build": "yarn run rimraf dist && yarn run rollup",
+        "remove:src": "yarn run rimraf src/**",
+        "rimraf": "../../node_modules/.bin/rimraf",
         "rollup": "npx rollup -c"
     },
     "dependencies": {
