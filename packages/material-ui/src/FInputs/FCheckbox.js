@@ -13,6 +13,7 @@ import { useFFormProps } from '../useFFormProps'
 import { useFieldError } from '../useFieldError'
 import PropTypes from 'prop-types'
 import { createOptionsProp } from '../createOptionsProp'
+import { inspectMuiInputProps } from './FAutocomplete'
 
 // Credit: This was taken from formik-material-ui. Big thanks for the inspiration!
 const fieldToFCheckbox = ({
@@ -27,7 +28,7 @@ const fieldToFCheckbox = ({
     if (process.env.NODE_ENV !== 'production') {
         invariant(
             type === 'checkbox',
-            `property type=checkbox is missing from field ${field.name}, this can caused unexpected behaviour`,
+            `property type=checkbox is missing from field ${field.name}, this can caused unexpected behaviour`
         )
     }
     return {
@@ -43,7 +44,12 @@ const fieldToFCheckbox = ({
     }
 }
 const Checkbox = ({ FormControlLabelProps, ...props }) => {
-    return <FormControlLabel control={<MuiCheckbox {...fieldToFCheckbox(props)} />} {...FormControlLabelProps} />
+    return (
+        <FormControlLabel
+            control={<MuiCheckbox {...fieldToFCheckbox(props)} />}
+            {...FormControlLabelProps}
+        />
+    )
 }
 export const FCheckbox = ({ ...fcheckboxProps }) => {
     const {
@@ -69,7 +75,25 @@ export const FCheckbox = ({ ...fcheckboxProps }) => {
     } = { FormControlLabelProps: muiInputProps?.FormControlLabelProps ?? {} }
     const newErrorMessage = _ErrorMessage ?? errors[_Name]
     if (process.env.NODE_ENV !== 'production') {
-        invariant(!!_Options, `Prop of \`options\` has not been defined, this can caused unexpected behaviour`)
+        const constraintProp = ['FormControlLabelProps']
+        const { isPropValid, brokenKeys } = inspectMuiInputProps({
+            inputProp: muiInputProps ?? {},
+            constraintProp,
+        })
+        // Notes: Warning for `muiInputProps` prop
+        invariant(
+            isPropValid,
+            `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
+                ', '
+            )}. Prop of \`muiInputProps\` from a FCheckbox component accepts only properties ${constraintProp.join(
+                ', '
+            )}.`
+        )
+        // Notes: Warning for `options` prop
+        invariant(
+            !!_Options,
+            `Prop of \`options\` has not been defined, this can caused unexpected behaviour`
+        )
     }
     if (!_Name) {
         throw new Error(`Prop of \`name\` has not been defined.`)
@@ -90,7 +114,10 @@ export const FCheckbox = ({ ...fcheckboxProps }) => {
                         name={_Name}
                         value={value ?? label}
                         // Notes: Default Mui FormControlLabel Props
-                        FormControlLabelProps={{ ...FormControlLabelProps, label }}
+                        FormControlLabelProps={{
+                            ...FormControlLabelProps,
+                            label,
+                        }}
                     />
                 )) ?? 'Please enter options prop'}
             </FormGroup>
@@ -142,5 +169,7 @@ FCheckbox.propTypes = {
      *
      * @param {Object}
      */
-    muiInputProps: PropTypes.object,
+    muiInputProps: PropTypes.shape({
+        FormControlLabelProps: PropTypes.object,
+    }),
 }

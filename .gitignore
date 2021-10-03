@@ -2,6 +2,7 @@
 
 # Local Files/Folders
 PRIVATE_NOTES.md
+examples/development
 
 # dependencies
 /node_modules

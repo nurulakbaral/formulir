@@ -5,6 +5,7 @@ import { useFFormProps } from '../useFFormProps'
 import { useFieldError } from '../useFieldError'
 import invariant from 'tiny-warning'
 import PropTypes from 'prop-types'
+import { inspectMuiInputProps } from './FAutocomplete'
 
 const fieldToFTextField = ({
     disabled,
@@ -29,7 +30,9 @@ const fieldToFTextField = ({
         ...props,
     }
 }
-const TextField = ({ ...props }) => <MuiTextField {...fieldToFTextField(props)} />
+const TextField = ({ ...props }) => (
+    <MuiTextField {...fieldToFTextField(props)} />
+)
 export const FTextField = ({ ...ftextfieldProps }) => {
     const {
         style: _Style,
@@ -61,9 +64,24 @@ export const FTextField = ({ ...ftextfieldProps }) => {
     } = { TextFieldProps: muiInputProps?.TextFieldProps ?? {} }
     const newErrorMessage = _ErrorMessage ?? errors[_Name]
     if (process.env.NODE_ENV !== 'production') {
+        const constraintProp = ['TextFieldProps']
+        const { isPropValid, brokenKeys } = inspectMuiInputProps({
+            inputProp: muiInputProps ?? {},
+            constraintProp,
+        })
+        // Notes: Warning for `muiInputProps` prop
+        invariant(
+            isPropValid,
+            `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
+                ', '
+            )}. Prop of \`muiInputProps\` from a FTextField component accepts only properties ${constraintProp.join(
+                ', '
+            )}.`
+        )
+        // Notes: Warning for `type` prop
         invariant(
             !!_Type,
-            `Prop of \`type\` has not been defined, please define it with the values ​​\`text\`, \`number\`, \`email\`, or \`password\`.`,
+            `Prop of \`type\` has not been defined, please define it with the values ​​\`text\`, \`number\`, \`email\`, or \`password\`.`
         )
     }
     if (!_Name) {
@@ -129,5 +147,7 @@ FTextField.propTypes = {
      *
      * @param {Object}
      */
-    muiInputProps: PropTypes.object,
+    muiInputProps: PropTypes.shape({
+        TextFieldProps: PropTypes.object,
+    }),
 }

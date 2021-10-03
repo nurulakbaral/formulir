@@ -5,6 +5,8 @@ import { Field } from 'formik'
 import { useFFormProps } from '../useFFormProps'
 import { useDefaultValue } from '../useDefaultValue'
 import PropTypes from 'prop-types'
+import invariant from 'tiny-warning'
+import { inspectMuiInputProps } from './FAutocomplete'
 
 // Credit: This was taken from formik-material-ui. Big thanks for the inspiration!
 function fieldFTimePicker({
@@ -30,7 +32,13 @@ const TimePicker = (props) => {
     return <MuiTimePicker {...fieldFTimePicker(props)} />
 }
 export const FTimePicker = ({ ...datepickerProps }) => {
-    const { style: _Style, className: _ClassName, name: _Name, label: _Label, muiInputProps } = datepickerProps
+    const {
+        style: _Style,
+        className: _ClassName,
+        name: _Name,
+        label: _Label,
+        muiInputProps,
+    } = datepickerProps
     const { formikProps } = useFFormProps()
     const [isOpen, setIsOpen] = React.useState(false)
     // Notes: Remove some prop from MuiTimePickerProps and MuiTextFieldProps
@@ -47,13 +55,33 @@ export const FTimePicker = ({ ...datepickerProps }) => {
             disableOpenPicker: $disableOpenPicker,
             ...TimePickerProps
         },
-        TextFieldProps: { onClick: $onClick, onBlur: $onBlur, ...TextFieldProps },
+        TextFieldProps: {
+            onClick: $onClick,
+            onBlur: $onBlur,
+            ...TextFieldProps
+        },
     } = {
         // Notes: Handle undefined value for TimePickerProps and TextFieldProps
         TimePickerProps: muiInputProps?.TimePickerProps ?? {},
         TextFieldProps: muiInputProps?.TextFieldProps ?? {},
     }
     useDefaultValue({ formikProps, fieldName: _Name, defaultValue: new Date() })
+    if (process.env.NODE_ENV !== 'production') {
+        const constraintProp = ['TextFieldProps', 'TimePickerProps']
+        const { isPropValid, brokenKeys } = inspectMuiInputProps({
+            inputProp: muiInputProps ?? {},
+            constraintProp,
+        })
+        // Notes: Warning for `muiInputProps` prop
+        invariant(
+            isPropValid,
+            `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
+                ', '
+            )}. Prop of \`muiInputProps\` from a FTimePicker component accepts only properties ${constraintProp.join(
+                ', '
+            )}.`
+        )
+    }
     if (!_Name) {
         throw new Error(`Prop of \`name\` has not been defined.`)
     }
@@ -76,7 +104,9 @@ export const FTimePicker = ({ ...datepickerProps }) => {
             renderInput={(params) => (
                 <TextField
                     onClick={() => setIsOpen(true)}
-                    onBlur={() => formikProps.setFieldTouched(_Name, true, false)}
+                    onBlur={() =>
+                        formikProps.setFieldTouched(_Name, true, false)
+                    }
                     {...TextFieldProps}
                     {...params}
                 />
@@ -117,5 +147,8 @@ FTimePicker.propTypes = {
      *
      * @param {Object}
      */
-    muiInputProps: PropTypes.object,
+    muiInputProps: PropTypes.shape({
+        TextFieldProps: PropTypes.object,
+        TimePickerProps: PropTypes.object,
+    }),
 }
