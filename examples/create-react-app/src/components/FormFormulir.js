@@ -58,12 +58,14 @@ export const FormFormulir = () => {
             <Grid container direction='column' spacing={2}>
                 <Grid item>
                     <Typography textAlign='center' variant='h5'>
-                        Formulir - Material UI
+                        Formulir - Material UI (create-react-app version)
                     </Typography>
                 </Grid>
                 <Grid item>
                     <FTextField
-                        muiInputProps={{ TextFieldProps: { fullWidth: true } }}
+                        muiInputProps={{
+                            TextFieldProps: { fullWidth: true },
+                        }}
                         label='Username'
                         type='text'
                         name='username'
@@ -72,7 +74,9 @@ export const FormFormulir = () => {
                 </Grid>
                 <Grid item>
                     <FTextField
-                        muiInputProps={{ TextFieldProps: { fullWidth: true } }}
+                        muiInputProps={{
+                            TextFieldProps: { fullWidth: true },
+                        }}
                         label='Age'
                         type='number'
                         name='age'
@@ -80,7 +84,9 @@ export const FormFormulir = () => {
                 </Grid>
                 <Grid item>
                     <FTextField
-                        muiInputProps={{ TextFieldProps: { fullWidth: true } }}
+                        muiInputProps={{
+                            TextFieldProps: { fullWidth: true },
+                        }}
                         label='Your Email'
                         type='email'
                         name='email'
@@ -88,7 +94,9 @@ export const FormFormulir = () => {
                 </Grid>
                 <Grid item>
                     <FTextField
-                        muiInputProps={{ TextFieldProps: { fullWidth: true } }}
+                        muiInputProps={{
+                            TextFieldProps: { fullWidth: true },
+                        }}
                         label='Your Password'
                         type='password'
                         name='password'

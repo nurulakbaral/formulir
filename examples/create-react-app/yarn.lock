@@ -1311,10 +1311,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@formulir/material-ui@^1.0.0-beta.6":
-  version "1.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@formulir/material-ui/-/material-ui-1.0.0-beta.6.tgz#38250b3b37925f55fcd733e656f867329c7a0735"
-  integrity sha512-M+Ylnj6pwf2ysXEVVEwCN6OM08xlv7Tea5cHZvOgNQHJG9FCwUJC3Rjx3nVbMtV5hjxB3vtroYD3iDMSfLXEFA==
+"@formulir/material-ui@^1.0.0-beta.7":
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@formulir/material-ui/-/material-ui-1.0.0-beta.7.tgz#66177e5d1babc6a25bf7164d1956f78cfcc667e2"
+  integrity sha512-0/Yr4rxzPQ6435fP0teOkjf1XZ1L8MsGT8LYX914Lxskb35ETalM5tPaJNkjEjy2JNz4nnKYYnZKUmu3IF9PDw==
   dependencies:
     "@babel/runtime" "^7.15.4"
     formik "^2.2.9"

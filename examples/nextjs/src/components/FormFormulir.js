@@ -58,12 +58,14 @@ export const FormFormulir = () => {
             <Grid container direction='column' spacing={2}>
                 <Grid item>
                     <Typography textAlign='center' variant='h5'>
-                        Formulir - Material UI
+                        Formulir - Material UI (Next.js version)
                     </Typography>
                 </Grid>
                 <Grid item>
                     <FTextField
-                        muiInputProps={{ TextFieldProps: { fullWidth: true } }}
+                        muiInputProps={{
+                            TextFieldProps: { fullWidth: true },
+                        }}
                         label='Username'
                         type='text'
                         name='username'

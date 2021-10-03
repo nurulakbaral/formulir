@@ -6,7 +6,7 @@
     "@date-io/date-fns": "^2.11.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
-    "@formulir/material-ui": "^1.0.0-beta.6",
+    "@formulir/material-ui": "^1.0.0-beta.7",
     "@mui/lab": "^5.0.0-alpha.49",
     "@mui/material": "^5.0.2",
     "@testing-library/jest-dom": "^5.11.4",
