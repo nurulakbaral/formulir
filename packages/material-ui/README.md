@@ -63,7 +63,7 @@ const FormFormulir = () => {
         // [initialValues key]: 'string' | 'number' | 'array' | Yup Validation
         // Examples:
         username: 'string',
-        favoriteSongs: Yup.array().min(1),
+        favoriteSongs: 'array',
         // Notes: There is no validation for DatePicker and TimePicker, because it is confirmed that it is already filled
         // birthDate: 'date',   <-- Wrong!
         // eventTime: 'date'    <-- Wrong!

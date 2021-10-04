@@ -37,7 +37,7 @@ const createValidationSchema = (schema = {}) => {
             case 'array': {
                 yupValidationSchema = {
                     ...yupValidationSchema,
-                    [key]: Yup.array().min(0),
+                    [key]: Yup.array().min(1),
                 }
                 break
             }
@@ -66,15 +66,21 @@ export const FForm = ({ children, ...fformProps }) => {
         if (_ValidationSchema !== false) {
             invariant(
                 !!_ValidationSchema,
-                `Prop of \`validationSchema\` has not been defined, if you don't want to use schema validation, please set the value of the \`validationSchema\` prop to \`false\`.`,
+                `Prop of \`validationSchema\` has not been defined, if you don't want to use schema validation, please set the value of the \`validationSchema\` prop to \`false\`.`
             )
         }
     }
     if (!_InitialValues || !_OnSubmit) {
-        throw new Error(`Prop of \`initialValues\` or \`onSubmit\` has not been defined,`)
+        throw new Error(
+            `Prop of \`initialValues\` or \`onSubmit\` has not been defined,`
+        )
     }
     return (
-        <Formik initialValues={_InitialValues} validationSchema={yupValidationSchema} onSubmit={_OnSubmit}>
+        <Formik
+            initialValues={_InitialValues}
+            validationSchema={yupValidationSchema}
+            onSubmit={_OnSubmit}
+        >
             {(formikProps) => (
                 <FFormPropsWrapper formikProps={formikProps}>
                     <Form style={_Style} className={_ClassName}>
@@ -118,7 +124,10 @@ FForm.propTypes = {
      *
      * @param {Object}
      */
-    validationSchema: PropTypes.oneOfType([PropTypes.bool.isRequired, PropTypes.object.isRequired]),
+    validationSchema: PropTypes.oneOfType([
+        PropTypes.bool.isRequired,
+        PropTypes.object.isRequired,
+    ]),
     /**
      * <Formik/>: onSubmit prop
      *
