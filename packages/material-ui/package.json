@@ -1,50 +1,49 @@
 {
-    "name": "@formulir/material-ui",
-    "version": "1.0.0-beta.7",
-    "author": "nurulakbaral@gmail.com",
-    "license": "MIT",
-    "main": "dist/index.js",
-    "module": "dist/index.es.js",
-    "jsnext:main": "dist/index.es.js",
-    "files": [
-        "dist"
-    ],
-    "keywords": [
-        "react",
-        "form",
-        "material-ui",
-        "formik",
-        "mui-v5",
-        "material-ui-v5"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/nurulakbaral/formulir.git"
-    },
-    "bugs": {
-        "url": "https://github.com/nurulakbaral/formulir/issues"
-    },
-    "scripts": {
-        "build": "yarn run rimraf dist && yarn run rollup",
-        "remove:src": "yarn run rimraf src/**",
-        "rimraf": "../../node_modules/.bin/rimraf",
-        "rollup": "npx rollup -c"
-    },
-    "dependencies": {
-        "@babel/runtime": "^7.15.4",
-        "formik": "^2.2.9",
-        "prop-types": "^15.7.2",
-        "yup": "^0.32.9",
-        "tiny-warning": "^1.0.3"
-    },
-    "peerDependencies": {
-        "@date-io/date-fns": "^2.11.0",
-        "@emotion/react": "^11.4.1",
-        "@emotion/styled": "^11.3.0",
-        "@mui/lab": "^5.0.0-alpha.49",
-        "@mui/material": "^5.0.2",
-        "date-fns": "^2.24.0",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
-    }
+  "name": "@formulir/material-ui",
+  "version": "1.0.0-beta.10",
+  "author": "nurulakbaral@gmail.com",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "form",
+    "material-ui",
+    "formik",
+    "mui-v5",
+    "material-ui-v5"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nurulakbaral/formulir.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nurulakbaral/formulir/issues"
+  },
+  "scripts": {
+    "build": "yarn run rimraf dist && yarn run rollup",
+    "remove:src": "yarn run rimraf src/**",
+    "rimraf": "../../node_modules/.bin/rimraf",
+    "rollup": "npx rollup -c"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "formik": "^2.2.9",
+    "prop-types": "^15.7.2",
+    "tiny-warning": "^1.0.3"
+  },
+  "peerDependencies": {
+    "@mui/lab": "^5.0.0-alpha.49",
+    "@mui/material": "^5.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "lodash": "latest",
+    "formik": "^2.2.9",
+    "prop-types": "^15.7.2",
+    "tiny-warning": "^1.0.3"
+  }
 }

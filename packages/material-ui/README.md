@@ -27,7 +27,7 @@ yarn add @formulir/material-ui
 **Note** :
 _If you use ex. Next.js make sure server rendering is in Material UI (MUI), to make it easier, you can follow the sample project from the Material UI documentation._
 
--   [Example Projects (Official)](https://mui.com/getting-started/example-projects/)
+- [Example Projects (Official)](https://mui.com/getting-started/example-projects/)
 
 ## Basic Usage
 
@@ -46,10 +46,16 @@ import {
 const FormFormulir = () => {
     const initialValues = {
         // FTextField, return {String}
-        username: '',
+        username: {
+            initialValue: "",
+            validation: "string"
+        },
         // FAutocomplete, return {String | Array}
         gender: '', // Single value
-        favoriteSongs: [], // Multiple values
+        favoriteSongs: {
+            initialValue: [], // Multiple values
+            validation: "array"
+        },
         // FCheckbox, return {Array}
         hobbies: [],
         // FDatePicker, return {Date}
@@ -59,25 +65,14 @@ const FormFormulir = () => {
         // FTimePicker, return {Date}
         eventTime: '',
     }
-    const validationSchema = {
-        // [initialValues key]: 'string' | 'number' | 'array' | Yup Validation
-        // Examples:
-        username: 'string',
-        favoriteSongs: Yup.array().min(1),
-        // Notes: There is no validation for DatePicker and TimePicker, because it is confirmed that it is already filled
-        // birthDate: 'date',   <-- Wrong!
-        // eventTime: 'date'    <-- Wrong!
-    }
     const handleSubmit = (values, { setSubmitting }) => {
         console.log(values)
         setSubmitting(false)
     }
-
     return (
         <FForm
             initialValues={initialValues}
             onSubmit={handleSubmit}
-            validationSchema={validationSchema}
         >
             <FTextField
                 name='username'
@@ -149,15 +144,11 @@ const FormFormulir = () => {
 
 ```jsx
 // App.js
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 function App() {
-    return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-            ...
-        </LocalizationProvider>
-    )
+  return <LocalizationProvider dateAdapter={AdapterDateFns}>...</LocalizationProvider>;
 }
 ```
 
@@ -165,11 +156,12 @@ function App() {
 
 ### FForm
 
-| Name             | Type            | Note     |
-| ---------------- | --------------- | -------- |
-| initialValues    | object          | required |
-| validationSchema | object \| false | required |
-| onSubmit         | function        | required |
+| Name             | Type     | Note     |
+| ---------------- | -------- | -------- |
+| initialValues    | object   | required |
+| validationSchema | object   | optional |
+| validate         | object   | optional |
+| onSubmit         | function | required |
 
 ### FButton
 
@@ -238,4 +230,4 @@ TextFieldProps (https://mui.com/api/text-field/#props), ButtonProps (https://mui
 
 ## Examples
 
--   [CodeSandbox](https://codesandbox.io/s/formulir-build-instant-material-ui-forms-m9n86?file=/src/App.js)
+- [CodeSandbox](https://codesandbox.io/s/formulir-build-instant-material-ui-forms-m9n86?file=/src/App.js)
