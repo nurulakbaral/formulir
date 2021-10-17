@@ -1,12 +1,12 @@
-import * as React from "react";
-import { TextField } from "@mui/material";
-import { DatePicker as MuiDatePicker } from "@mui/lab";
-import { Field } from "formik";
-import { useFFormProps } from "../useFFormProps";
-import { useDefaultValue } from "../useDefaultValue";
-import PropTypes from "prop-types";
-import { inspectMuiInputProps } from "./FAutocomplete";
-import invariant from "tiny-warning";
+import * as React from "react"
+import { TextField } from "@mui/material"
+import { DatePicker as MuiDatePicker } from "@mui/lab"
+import { Field } from "formik"
+import { useFFormProps } from "../useFFormProps"
+import { useDefaultValue } from "../useDefaultValue"
+import PropTypes from "prop-types"
+import { inspectMuiInputProps } from "./FAutocomplete"
+import invariant from "tiny-warning"
 
 // Credit: This was taken from formik-material-ui. Big thanks for the inspiration!
 function fieldToFDatePicker({
@@ -21,19 +21,19 @@ function fieldToFDatePicker({
     onChange:
       onChange ??
       function (dateValue) {
-        setFieldValue(field.name, dateValue);
+        setFieldValue(field.name, dateValue)
       },
     ...field,
     ...props,
-  };
+  }
 }
 const DatePicker = (props) => {
-  return <MuiDatePicker {...fieldToFDatePicker(props)} />;
-};
+  return <MuiDatePicker {...fieldToFDatePicker(props)} />
+}
 export const FDatePicker = ({ ...datepickerProps }) => {
-  const { style: _Style, className: _ClassName, name: _Name, label: _Label, muiInputProps } = datepickerProps;
-  const { formikProps } = useFFormProps();
-  const [isOpen, setIsOpen] = React.useState(false);
+  const { style: _Style, className: _ClassName, name: _Name, label: _Label, muiInputProps } = datepickerProps
+  const { formikProps } = useFFormProps()
+  const [isOpen, setIsOpen] = React.useState(false)
   // Notes: Remove some prop from MuiDatePickerProps and MuiTextFieldProps
   const {
     DatePickerProps: {
@@ -53,24 +53,24 @@ export const FDatePicker = ({ ...datepickerProps }) => {
     // Notes: Handle undefined value for DatePickerProps and TextFieldProps
     DatePickerProps: muiInputProps?.DatePickerProps ?? {},
     TextFieldProps: muiInputProps?.TextFieldProps ?? {},
-  };
-  useDefaultValue({ formikProps, fieldName: _Name, defaultValue: new Date() });
+  }
+  useDefaultValue({ formikProps, fieldName: _Name, defaultValue: new Date() })
   if (process.env.NODE_ENV !== "production") {
-    const constraintProp = ["TextFieldProps", "DatePickerProps"];
+    const constraintProp = ["TextFieldProps", "DatePickerProps"]
     const { isPropValid, brokenKeys } = inspectMuiInputProps({
       inputProp: muiInputProps ?? {},
       constraintProp,
-    });
+    })
     // Notes: Warning for `muiInputProps` prop
     invariant(
       isPropValid,
       `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
         ", "
       )}. Prop of \`muiInputProps\` from a FDatePicker component accepts only properties ${constraintProp.join(", ")}.`
-    );
+    )
   }
   if (!_Name) {
-    throw new Error(`Prop of \`name\` has not been defined.`);
+    throw new Error(`Prop of \`name\` has not been defined.`)
   }
   return (
     <Field
@@ -95,8 +95,8 @@ export const FDatePicker = ({ ...datepickerProps }) => {
         />
       )}
     />
-  );
-};
+  )
+}
 
 FDatePicker.propTypes = {
   /**
@@ -138,4 +138,4 @@ FDatePicker.propTypes = {
     TextFieldProps: PropTypes.object,
     DatePickerProps: PropTypes.object,
   }),
-};
+}

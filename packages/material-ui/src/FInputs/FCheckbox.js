@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Field } from "formik";
-import invariant from "tiny-warning";
+import * as React from "react"
+import { Field } from "formik"
+import invariant from "tiny-warning"
 import {
   FormControl,
   FormLabel,
@@ -8,12 +8,12 @@ import {
   FormControlLabel,
   FormHelperText,
   Checkbox as MuiCheckbox,
-} from "@mui/material";
-import { useFFormProps } from "../useFFormProps";
-import { useFieldError } from "../useFieldError";
-import PropTypes from "prop-types";
-import { createOptionsProp } from "../createOptionsProp";
-import { inspectMuiInputProps } from "./FAutocomplete";
+} from "@mui/material"
+import { useFFormProps } from "../useFFormProps"
+import { useFieldError } from "../useFieldError"
+import PropTypes from "prop-types"
+import { createOptionsProp } from "../createOptionsProp"
+import { inspectMuiInputProps } from "./FAutocomplete"
 
 // Credit: This was taken from formik-material-ui. Big thanks for the inspiration!
 const fieldToFCheckbox = ({
@@ -24,12 +24,12 @@ const fieldToFCheckbox = ({
   onBlur,
   ...props
 }) => {
-  const indeterminate = !Array.isArray(field.value) && field.value == null;
+  const indeterminate = !Array.isArray(field.value) && field.value == null
   if (process.env.NODE_ENV !== "production") {
     invariant(
       type === "checkbox",
       `property type=checkbox is missing from field ${field.name}, this can caused unexpected behaviour`
-    );
+    )
   }
   return {
     disabled: disabled ?? isSubmitting,
@@ -37,19 +37,19 @@ const fieldToFCheckbox = ({
     onBlur:
       onBlur ??
       function (e) {
-        fieldOnBlur(e ?? field.name);
+        fieldOnBlur(e ?? field.name)
       },
     ...field,
     ...props,
-  };
-};
+  }
+}
 const Checkbox = ({ FormControlLabelProps, ...props }) => {
-  return <FormControlLabel control={<MuiCheckbox {...fieldToFCheckbox(props)} />} {...FormControlLabelProps} />;
-};
+  return <FormControlLabel control={<MuiCheckbox {...fieldToFCheckbox(props)} />} {...FormControlLabelProps} />
+}
 export const FCheckbox = ({ ...fcheckboxProps }) => {
   const {
     formikProps: { errors, touched },
-  } = useFFormProps();
+  } = useFFormProps()
   const {
     style: _Style,
     className: _ClassName,
@@ -58,38 +58,38 @@ export const FCheckbox = ({ ...fcheckboxProps }) => {
     label: _Label,
     errorMessage: _ErrorMessage,
     muiInputProps,
-  } = fcheckboxProps;
+  } = fcheckboxProps
   const { isError } = useFieldError({
     formikErrors: errors,
     formikTouched: touched,
     fieldName: _Name,
-  });
+  })
   // Notes: Remove some props from MuiFormControlLabelProps
   const {
     FormControlLabelProps: { label: $label, ...FormControlLabelProps },
-  } = { FormControlLabelProps: muiInputProps?.FormControlLabelProps ?? {} };
-  const newErrorMessage = _ErrorMessage ?? errors[_Name];
+  } = { FormControlLabelProps: muiInputProps?.FormControlLabelProps ?? {} }
+  const newErrorMessage = _ErrorMessage ?? errors[_Name]
   if (process.env.NODE_ENV !== "production") {
-    const constraintProp = ["FormControlLabelProps"];
+    const constraintProp = ["FormControlLabelProps"]
     const { isPropValid, brokenKeys } = inspectMuiInputProps({
       inputProp: muiInputProps ?? {},
       constraintProp,
-    });
+    })
     // Notes: Warning for `muiInputProps` prop
     invariant(
       isPropValid,
       `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
         ", "
       )}. Prop of \`muiInputProps\` from a FCheckbox component accepts only properties ${constraintProp.join(", ")}.`
-    );
+    )
     // Notes: Warning for `options` prop
-    invariant(!!_Options, `Prop of \`options\` has not been defined, this can caused unexpected behaviour`);
+    invariant(!!_Options, `Prop of \`options\` has not been defined, this can caused unexpected behaviour`)
   }
   if (!_Name) {
-    throw new Error(`Prop of \`name\` has not been defined.`);
+    throw new Error(`Prop of \`name\` has not been defined.`)
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const newOptionsProp = React.useMemo(() => createOptionsProp(_Options), []);
+  const newOptionsProp = React.useMemo(() => createOptionsProp(_Options), [_Options])
   return (
     <FormControl style={_Style} className={_ClassName} error={isError}>
       <FormLabel>{_Label}</FormLabel>
@@ -113,8 +113,8 @@ export const FCheckbox = ({ ...fcheckboxProps }) => {
       </FormGroup>
       <FormHelperText>{isError ? newErrorMessage : null}</FormHelperText>
     </FormControl>
-  );
-};
+  )
+}
 
 FCheckbox.propTypes = {
   /**
@@ -168,4 +168,4 @@ FCheckbox.propTypes = {
   muiInputProps: PropTypes.shape({
     FormControlLabelProps: PropTypes.object,
   }),
-};
+}

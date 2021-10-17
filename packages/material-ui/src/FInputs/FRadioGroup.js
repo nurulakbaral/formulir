@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 import {
   RadioGroup as MuiRadioGroup,
   FormControl,
@@ -6,14 +6,14 @@ import {
   FormControlLabel,
   FormHelperText,
   Radio,
-} from "@mui/material";
-import { Field } from "formik";
-import { useFFormProps } from "../useFFormProps";
-import { useFieldError } from "../useFieldError";
-import invariant from "tiny-warning";
-import PropTypes from "prop-types";
-import { createOptionsProp } from "../createOptionsProp";
-import { inspectMuiInputProps } from "./FAutocomplete";
+} from "@mui/material"
+import { Field } from "formik"
+import { useFFormProps } from "../useFFormProps"
+import { useFieldError } from "../useFieldError"
+import invariant from "tiny-warning"
+import PropTypes from "prop-types"
+import { createOptionsProp } from "../createOptionsProp"
+import { inspectMuiInputProps } from "./FAutocomplete"
 
 // Credit: This was taken from formik-material-ui. Big thanks for the inspiration!
 const fieldToFRadioGroup = ({ field: { onBlur: fieldOnBlur, ...field }, form, onBlur, ...props }) => {
@@ -21,17 +21,17 @@ const fieldToFRadioGroup = ({ field: { onBlur: fieldOnBlur, ...field }, form, on
     onBlur:
       onBlur ??
       function (e) {
-        fieldOnBlur(e ?? field.name);
+        fieldOnBlur(e ?? field.name)
       },
     ...field,
     ...props,
-  };
-};
+  }
+}
 const RadioGroup = ({ children, ...props }) => {
-  return <MuiRadioGroup {...fieldToFRadioGroup(props)}>{children}</MuiRadioGroup>;
-};
+  return <MuiRadioGroup {...fieldToFRadioGroup(props)}>{children}</MuiRadioGroup>
+}
 export const FRadioGroup = ({ ...fradiogroupProps }) => {
-  const { formikProps } = useFFormProps();
+  const { formikProps } = useFFormProps()
   const {
     style: _Style,
     className: _ClassName,
@@ -40,13 +40,13 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
     label: _Label,
     errorMessage: _ErrorMesage,
     muiInputProps,
-  } = fradiogroupProps;
+  } = fradiogroupProps
   const { isError } = useFieldError({
     formikErrors: formikProps.errors,
     formikTouched: formikProps.touched,
     fieldName: _Name,
-  });
-  const newErrorMessage = _ErrorMesage ?? formikProps.errors[_Name];
+  })
+  const newErrorMessage = _ErrorMesage ?? formikProps.errors[_Name]
   // Notes: Remove some props from MuiFormControlLabelProps
   const {
     FormControlLabelProps: {
@@ -56,28 +56,28 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
       disabled: $disabled,
       ...FormControlLabelProps
     },
-  } = { FormControlLabelProps: muiInputProps?.FormControlLabelProps ?? {} };
+  } = { FormControlLabelProps: muiInputProps?.FormControlLabelProps ?? {} }
   if (process.env.NODE_ENV !== "production") {
-    const constraintProp = ["FormControlLabelProps"];
+    const constraintProp = ["FormControlLabelProps"]
     const { isPropValid, brokenKeys } = inspectMuiInputProps({
       inputProp: muiInputProps ?? {},
       constraintProp,
-    });
+    })
     // Notes: Warning for `muiInputProps` prop
     invariant(
       isPropValid,
       `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
         ", "
       )}. Prop of \`muiInputProps\` from a FRadioGroup component accepts only properties ${constraintProp.join(", ")}.`
-    );
+    )
     // Notes: Warning for `options` prop
-    invariant(!!_Options, `Prop of \`options\` has not been defined, this can caused unexpected behaviour`);
+    invariant(!!_Options, `Prop of \`options\` has not been defined, this can caused unexpected behaviour`)
   }
   if (!_Name) {
-    throw new Error(`Prop of \`name\` has not been defined.`);
+    throw new Error(`Prop of \`name\` has not been defined.`)
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const newOptionsProp = React.useMemo(() => createOptionsProp(_Options), []);
+  const newOptionsProp = React.useMemo(() => createOptionsProp(_Options), [_Options])
   return (
     <FormControl style={_Style} className={_ClassName} error={isError}>
       <FormLabel>{_Label}</FormLabel>
@@ -96,8 +96,8 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
       </Field>
       <FormHelperText>{isError ? newErrorMessage : null}</FormHelperText>
     </FormControl>
-  );
-};
+  )
+}
 
 FRadioGroup.propTypes = {
   /**
@@ -151,4 +151,4 @@ FRadioGroup.propTypes = {
   muiInputProps: PropTypes.shape({
     FormControlLabelProps: PropTypes.object,
   }),
-};
+}
