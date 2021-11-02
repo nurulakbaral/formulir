@@ -60,7 +60,7 @@ export const inspectMuiInputProps = (IOProp = {}) => {
 };
 export const FAutocomplete = ({ ...fautocompleteProps }) => {
   const {
-    formikProps: { errors, touched, values },
+    formikProps: { errors, touched, values, setFieldValue },
   } = useFFormProps();
   const {
     style: _Style,
@@ -71,6 +71,10 @@ export const FAutocomplete = ({ ...fautocompleteProps }) => {
     options: _Options,
     muiInputProps,
   } = fautocompleteProps;
+  React.useEffect(() => {
+    setFieldValue(_Name, values[_Name]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const { isError } = useFieldError({
     formikErrors: errors,
     formikTouched: touched,
