@@ -1,6 +1,6 @@
 {
   "name": "@formulir/material-ui",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "author": "nurulakbaral@gmail.com",
   "license": "MIT",
   "main": "dist/index.js",

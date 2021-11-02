@@ -77,7 +77,7 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
     throw new Error(`Prop of \`name\` has not been defined.`)
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const newOptionsProp = React.useMemo(() => createOptionsProp(_Options), [])
+  const newOptionsProp = React.useMemo(() => createOptionsProp(_Options), [_Options])
   return (
     <FormControl style={_Style} className={_ClassName} error={isError}>
       <FormLabel>{_Label}</FormLabel>
