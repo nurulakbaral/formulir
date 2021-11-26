@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "prettier": "prettier --check \"packages/**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --write \"packages/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@date-io/date-fns": "^2.11.0",

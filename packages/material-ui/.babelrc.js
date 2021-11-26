@@ -1,41 +1,41 @@
 module.exports = {
   presets: [
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
         modules: false,
       },
     ],
-    "@babel/preset-react",
+    '@babel/preset-react',
   ],
   plugins: [
     [
-      "@babel/plugin-proposal-class-properties",
+      '@babel/plugin-proposal-class-properties',
       {
         loose: true,
       },
     ],
     [
-      "@babel/plugin-proposal-object-rest-spread",
+      '@babel/plugin-proposal-object-rest-spread',
       {
         loose: true,
       },
     ],
     [
-      "@babel/plugin-transform-runtime",
+      '@babel/plugin-transform-runtime',
       {
-        version: "^7.15.0",
+        version: '^7.15.0',
       },
     ],
-    "@babel/plugin-transform-object-assign",
-    "@babel/plugin-transform-react-constant-elements",
-    "babel-plugin-transform-dev-warning",
+    '@babel/plugin-transform-object-assign',
+    '@babel/plugin-transform-react-constant-elements',
+    'babel-plugin-transform-dev-warning',
     [
-      "babel-plugin-transform-react-remove-prop-types",
+      'babel-plugin-transform-react-remove-prop-types',
       {
-        mode: "unsafe-wrap",
+        mode: 'unsafe-wrap',
       },
     ],
   ],
   ignore: [/@babel[\\|/]runtime/],
-};
+}

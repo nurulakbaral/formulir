@@ -1,12 +1,12 @@
-import * as React from "react"
-import { TextField } from "@mui/material"
-import { DatePicker as MuiDatePicker } from "@mui/lab"
-import { Field } from "formik"
-import { useFFormProps } from "../useFFormProps"
-import { useDefaultValue } from "../useDefaultValue"
-import PropTypes from "prop-types"
-import { inspectMuiInputProps } from "./FAutocomplete"
-import invariant from "tiny-warning"
+import * as React from 'react'
+import { TextField } from '@mui/material'
+import { DatePicker as MuiDatePicker } from '@mui/lab'
+import { Field } from 'formik'
+import { useFFormProps } from '../useFFormProps'
+import { useDefaultValue } from '../useDefaultValue'
+import PropTypes from 'prop-types'
+import { inspectMuiInputProps } from './FAutocomplete'
+import invariant from 'tiny-warning'
 
 // Credit: This was taken from formik-material-ui. Big thanks for the inspiration!
 function fieldToFDatePicker({
@@ -55,8 +55,8 @@ export const FDatePicker = ({ ...datepickerProps }) => {
     TextFieldProps: muiInputProps?.TextFieldProps ?? {},
   }
   useDefaultValue({ formikProps, fieldName: _Name, defaultValue: new Date() })
-  if (process.env.NODE_ENV !== "production") {
-    const constraintProp = ["TextFieldProps", "DatePickerProps"]
+  if (process.env.NODE_ENV !== 'production') {
+    const constraintProp = ['TextFieldProps', 'DatePickerProps']
     const { isPropValid, brokenKeys } = inspectMuiInputProps({
       inputProp: muiInputProps ?? {},
       constraintProp,
@@ -65,8 +65,8 @@ export const FDatePicker = ({ ...datepickerProps }) => {
     invariant(
       isPropValid,
       `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
-        ", "
-      )}. Prop of \`muiInputProps\` from a FDatePicker component accepts only properties ${constraintProp.join(", ")}.`
+        ', ',
+      )}. Prop of \`muiInputProps\` from a FDatePicker component accepts only properties ${constraintProp.join(', ')}.`,
     )
   }
   if (!_Name) {

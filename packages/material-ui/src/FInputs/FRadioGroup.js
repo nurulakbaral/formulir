@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 import {
   RadioGroup as MuiRadioGroup,
   FormControl,
@@ -6,14 +6,14 @@ import {
   FormControlLabel,
   FormHelperText,
   Radio,
-} from "@mui/material"
-import { Field } from "formik"
-import { useFFormProps } from "../useFFormProps"
-import { useFieldError } from "../useFieldError"
-import invariant from "tiny-warning"
-import PropTypes from "prop-types"
-import { createOptionsProp } from "../createOptionsProp"
-import { inspectMuiInputProps } from "./FAutocomplete"
+} from '@mui/material'
+import { Field } from 'formik'
+import { useFFormProps } from '../useFFormProps'
+import { useFieldError } from '../useFieldError'
+import invariant from 'tiny-warning'
+import PropTypes from 'prop-types'
+import { createOptionsProp } from '../createOptionsProp'
+import { inspectMuiInputProps } from './FAutocomplete'
 
 // Credit: This was taken from formik-material-ui. Big thanks for the inspiration!
 const fieldToFRadioGroup = ({ field: { onBlur: fieldOnBlur, ...field }, form, onBlur, ...props }) => {
@@ -57,8 +57,8 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
       ...FormControlLabelProps
     },
   } = { FormControlLabelProps: muiInputProps?.FormControlLabelProps ?? {} }
-  if (process.env.NODE_ENV !== "production") {
-    const constraintProp = ["FormControlLabelProps"]
+  if (process.env.NODE_ENV !== 'production') {
+    const constraintProp = ['FormControlLabelProps']
     const { isPropValid, brokenKeys } = inspectMuiInputProps({
       inputProp: muiInputProps ?? {},
       constraintProp,
@@ -67,8 +67,8 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
     invariant(
       isPropValid,
       `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
-        ", "
-      )}. Prop of \`muiInputProps\` from a FRadioGroup component accepts only properties ${constraintProp.join(", ")}.`
+        ', ',
+      )}. Prop of \`muiInputProps\` from a FRadioGroup component accepts only properties ${constraintProp.join(', ')}.`,
     )
     // Notes: Warning for `options` prop
     invariant(!!_Options, `Prop of \`options\` has not been defined, this can caused unexpected behaviour`)
@@ -76,12 +76,11 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
   if (!_Name) {
     throw new Error(`Prop of \`name\` has not been defined.`)
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const newOptionsProp = React.useMemo(() => createOptionsProp(_Options), [_Options])
   return (
     <FormControl style={_Style} className={_ClassName} error={isError}>
       <FormLabel>{_Label}</FormLabel>
-      <Field component={RadioGroup} type="radio" name={_Name}>
+      <Field component={RadioGroup} type='radio' name={_Name}>
         {newOptionsProp?.map(({ label, value }) => (
           <FormControlLabel
             key={`${label}-${value}`}
@@ -92,7 +91,7 @@ export const FRadioGroup = ({ ...fradiogroupProps }) => {
             disabled={formikProps.isSubmitting}
             {...FormControlLabelProps}
           />
-        )) ?? "Please enter options prop"}
+        )) ?? 'Please enter options prop'}
       </Field>
       <FormHelperText>{isError ? newErrorMessage : null}</FormHelperText>
     </FormControl>
