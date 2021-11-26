@@ -5,6 +5,7 @@
 app
 public
 PRIVATE_NOTES.md
+.eslintcache
 
 # dependencies
 /node_modules
