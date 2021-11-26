@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Field } from "formik";
-import { TextField as MuiTextField } from "@mui/material";
-import { useFFormProps } from "../useFFormProps";
-import { useFieldError } from "../useFieldError";
-import invariant from "tiny-warning";
-import PropTypes from "prop-types";
-import { inspectMuiInputProps } from "./FAutocomplete";
+import * as React from 'react'
+import { Field } from 'formik'
+import { TextField as MuiTextField } from '@mui/material'
+import { useFFormProps } from '../useFFormProps'
+import { useFieldError } from '../useFieldError'
+import invariant from 'tiny-warning'
+import PropTypes from 'prop-types'
+import { inspectMuiInputProps } from './FAutocomplete'
 
 const fieldToFTextField = ({
   disabled,
@@ -24,14 +24,15 @@ const fieldToFTextField = ({
     onBlur:
       onBlur ??
       function (e) {
-        fieldOnBlur(e ?? field.name);
+        fieldOnBlur(e ?? field.name)
       },
     ...field,
     ...props,
-  };
-};
-const TextField = ({ ...props }) => <MuiTextField {...fieldToFTextField(props)} />;
+  }
+}
+const TextField = ({ ...props }) => <MuiTextField {...fieldToFTextField(props)} />
 export const FTextField = ({ ...ftextfieldProps }) => {
+  console.log('Monorepo')
   const {
     style: _Style,
     className: _ClassName,
@@ -40,15 +41,15 @@ export const FTextField = ({ ...ftextfieldProps }) => {
     label: _Label,
     errorMessage: _ErrorMessage,
     muiInputProps,
-  } = ftextfieldProps;
+  } = ftextfieldProps
   const {
     formikProps: { errors, touched },
-  } = useFFormProps();
+  } = useFFormProps()
   const { isError } = useFieldError({
     formikErrors: errors,
     formikTouched: touched,
     fieldName: _Name,
-  });
+  })
   const {
     TextFieldProps: {
       style: $style,
@@ -59,29 +60,29 @@ export const FTextField = ({ ...ftextfieldProps }) => {
       isError: $isError,
       ...TextFieldProps
     },
-  } = { TextFieldProps: muiInputProps?.TextFieldProps ?? {} };
-  const newErrorMessage = _ErrorMessage ?? errors[_Name];
-  if (process.env.NODE_ENV !== "production") {
-    const constraintProp = ["TextFieldProps"];
+  } = { TextFieldProps: muiInputProps?.TextFieldProps ?? {} }
+  const newErrorMessage = _ErrorMessage ?? errors[_Name]
+  if (process.env.NODE_ENV !== 'production') {
+    const constraintProp = ['TextFieldProps']
     const { isPropValid, brokenKeys } = inspectMuiInputProps({
       inputProp: muiInputProps ?? {},
       constraintProp,
-    });
+    })
     // Notes: Warning for `muiInputProps` prop
     invariant(
       isPropValid,
       `Prop of \`muiInputProps\` doesn't accept properties ${brokenKeys.join(
-        ", "
-      )}. Prop of \`muiInputProps\` from a FTextField component accepts only properties ${constraintProp.join(", ")}.`
-    );
+        ', ',
+      )}. Prop of \`muiInputProps\` from a FTextField component accepts only properties ${constraintProp.join(', ')}.`,
+    )
     // Notes: Warning for `type` prop
     invariant(
       !!_Type,
-      `Prop of \`type\` has not been defined, please define it with the values ​​\`text\`, \`number\`, \`email\`, or \`password\`.`
-    );
+      `Prop of \`type\` has not been defined, please define it with the values ​​\`text\`, \`number\`, \`email\`, or \`password\`.`,
+    )
   }
   if (!_Name) {
-    throw new Error(`Prop of \`name\` has not been defined.`);
+    throw new Error(`Prop of \`name\` has not been defined.`)
   }
   return (
     <Field
@@ -96,8 +97,8 @@ export const FTextField = ({ ...ftextfieldProps }) => {
       isError={isError}
       {...TextFieldProps}
     />
-  );
-};
+  )
+}
 
 FTextField.propTypes = {
   /**
@@ -152,4 +153,4 @@ FTextField.propTypes = {
   muiInputProps: PropTypes.shape({
     TextFieldProps: PropTypes.object,
   }),
-};
+}

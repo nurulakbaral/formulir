@@ -1,26 +1,26 @@
-import * as React from "react";
-import { Formik, Form } from "formik";
-import { FFormPropsWrapper } from "../useFFormProps";
-import invariant from "tiny-warning";
-import PropTypes from "prop-types";
-import { isPlainObject, startCase } from "lodash";
+import * as React from 'react'
+import { Formik, Form } from 'formik'
+import { FFormPropsWrapper } from '../useFFormProps'
+import invariant from 'tiny-warning'
+import PropTypes from 'prop-types'
+import { isPlainObject, startCase } from 'lodash'
 
 const formSchema = (initialValuesAPI = {}) => {
-  const initialValues = {};
-  const validationIdentifier = {};
+  const initialValues = {}
+  const validationIdentifier = {}
   for (const [key, value] of Object.entries(initialValuesAPI)) {
     if (isPlainObject(value)) {
-      initialValues[key] = value.initialValue;
-      validationIdentifier[key] = value.validation;
-      continue;
+      initialValues[key] = value.initialValue
+      validationIdentifier[key] = value.validation
+      continue
     }
-    initialValues[key] = value;
+    initialValues[key] = value
   }
   return {
     initialValues,
     validationIdentifier,
-  };
-};
+  }
+}
 
 export const FForm = ({ children, ...fformProps }) => {
   const {
@@ -30,43 +30,43 @@ export const FForm = ({ children, ...fformProps }) => {
     validationSchema: _ValidationSchema,
     validate: _Validate,
     onSubmit: _OnSubmit,
-  } = fformProps;
+  } = fformProps
   const handleStandardErrors = (formikValues) => {
-    const validationIdentifier = formSchema(_InitialValues).validationIdentifier;
-    const errors = {};
-    const valuesKey = Object.keys(formikValues);
+    const validationIdentifier = formSchema(_InitialValues).validationIdentifier
+    const errors = {}
+    const valuesKey = Object.keys(formikValues)
     for (const key of valuesKey) {
       // Notes: Standard string validation
-      if (validationIdentifier[key] === "string") {
+      if (validationIdentifier[key] === 'string') {
         if (!formikValues[key]) {
-          errors[key] = `${startCase(key)} is a required field`;
+          errors[key] = `${startCase(key)} is a required field`
         }
         // Notes: Standard array validation
-      } else if (validationIdentifier[key] === "array") {
+      } else if (validationIdentifier[key] === 'array') {
         if (!formikValues[key].length) {
-          errors[key] = `${startCase(key)} must have at least 1 items`;
+          errors[key] = `${startCase(key)} must have at least 1 items`
         }
         // Notes: Standard number validation
-      } else if (validationIdentifier[key] === "number") {
-        if (["", 0].includes(formikValues[key])) {
-          errors[key] = `${startCase(key)} be greater than 0`;
+      } else if (validationIdentifier[key] === 'number') {
+        if (['', 0].includes(formikValues[key])) {
+          errors[key] = `${startCase(key)} be greater than 0`
         }
       }
     }
-    return errors;
-  };
-  if (process.env.NODE_ENV !== "production") {
+    return errors
+  }
+  if (process.env.NODE_ENV !== 'production') {
     // Notes: Checks if entered a value other than 'string' | 'number' | 'array' in standard validation in initialValues
-    const constraintIndetifier = ["string", "number", "array"];
-    const validationIdentifier = Object.values(formSchema(_InitialValues).validationIdentifier);
-    const isIdentifierValid = validationIdentifier.find((value) => !constraintIndetifier.includes(value));
+    const constraintIndetifier = ['string', 'number', 'array']
+    const validationIdentifier = Object.values(formSchema(_InitialValues).validationIdentifier)
+    const isIdentifierValid = validationIdentifier.find((value) => !constraintIndetifier.includes(value))
     invariant(
       !isIdentifierValid,
-      `validation of \`${isIdentifierValid}\` does not exist. Validation accepts only \`string\` | \`number\` | \`array\``
-    );
+      `validation of \`${isIdentifierValid}\` does not exist. Validation accepts only \`string\` | \`number\` | \`array\``,
+    )
   }
   if (!_InitialValues || !_OnSubmit) {
-    throw new Error(`Prop of \`initialValues\` or \`onSubmit\` has not been defined,`);
+    throw new Error(`Prop of \`initialValues\` or \`onSubmit\` has not been defined,`)
   }
   return (
     <Formik
@@ -83,8 +83,8 @@ export const FForm = ({ children, ...fformProps }) => {
         </FFormPropsWrapper>
       )}
     </Formik>
-  );
-};
+  )
+}
 
 FForm.propTypes = {
   /**
@@ -142,4 +142,4 @@ FForm.propTypes = {
    * @param {Function}
    */
   onSubmit: PropTypes.func.isRequired,
-};
+}
